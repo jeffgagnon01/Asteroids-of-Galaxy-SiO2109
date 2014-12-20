@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta charset = "utf-8"/>
+  	<meta name = "author" content="Jean-François Gagnon"/>
+    <title>Asteroids of Galaxy SiO-2109</title>
+    <link rel="stylesheet" href="css/menu.css"/>
+    <link rel="stylesheet" href="css/page.css"/>
+    <link rel="stylesheet" href="css/list.css"/>
+    <link rel="stylesheet" href="css/layout.css"/>
+    <link rel="import" href="packages/polymer/polymer.html">
+    <script type="text/javascript">
+    
+var flagclock = 0;
+var flagstop = 0;
+var stoptime = 0;
+var splitcounter = 0;
+var currenttime;
+var splitdate = '';
+var output;
+var clock; function startstop()
+{
+var startstop = document.getElementById('startstopbutton');
+var startdate = new Date();
+var starttime = startdate.getTime();
+if(flagclock==0)
+{
+startstop.value = 'Stop';
+flagclock = 1;
+counter(starttime);
+}
+else
+{
+startstop.value = 'Start';
+flagclock = 0;
+flagstop = 1;
+splitdate = '';
+}
+}
+function counter(starttime)
+{
+output = document.getElementById('output');
+clock = document.getElementById('clock');
+currenttime = new Date();
+var timediff = currenttime.getTime() - starttime;
+if(flagstop == 1)
+{
+timediff = timediff + stoptime
+}
+if(flagclock == 1)
+{
+clock.value = formattime(timediff,'');
+refresh = setTimeout('counter(' + starttime + ');',10);
+}
+else
+{
+window.clearTimeout(refresh);
+stoptime = timediff;
+}
+}
+function formattime(rawtime,roundtype)
+{
+if(roundtype == 'round')
+{
+var ds = Math.round(rawtime/100) + '';
+}
+else
+{
+var ds = Math.floor(rawtime/100) + '';
+}
+var sec = Math.floor(rawtime/1000);
+var min = Math.floor(rawtime/60000);
+ds = ds.charAt(ds.length - 1);
+if(min >= 60)
+{
+startstop();
+}
+sec = sec - 60 * min + '';
+if(sec.charAt(sec.length - 2) != '')
+{
+sec = sec.charAt(sec.length - 2) + sec.charAt(sec.length - 1);
+}
+else
+{
+sec = 0 + sec.charAt(sec.length - 1);
+}
+min = min + '';
+if(min.charAt(min.length - 2) != '')
+{
+min = min.charAt(min.length - 2)+min.charAt(min.length - 1);
+}
+else
+{
+min = 0 + min.charAt(min.length - 1);
+}
+return min + ':' + sec + ':' + ds;
+}
+function resetclock()
+{
+flagstop = 0;
+stoptime = 0;
+splitdate = '';
+window.clearTimeout(refresh);
+output.value = '';
+splitcounter = 0;
+if(flagclock == 1)
+{
+var resetdate = new Date();
+var resettime = resetdate.getTime();
+counter(resettime);
+}
+else
+{
+clock.value = "00:00:0";
+}
+}
+function splittime()
+{
+if(flagclock == 1)
+{
+if(splitdate != '')
+{
+var splitold = splitdate.split(':');
+var splitnow = clock.value.split(':');
+var numbers = new Array();
+var i = 0
+for(i;i<splitold.length;i++)
+{
+numbers[i] = new Array();
+numbers[i][0] = splitold[i]*1;
+numbers[i][1] = splitnow[i]*1;
+}
+if(numbers[1][1] < numbers[1][0])
+{
+numbers[1][1] += 60;
+numbers[0][1] -= 1;
+}
+if(numbers[2][1] < numbers[2][0])
+{
+numbers[2][1] += 10;
+numbers[1][1] -= 1;
+}
+var mzeros = (numbers[0][1] - numbers[0][0]) < 10?'0':'';
+var szeros = (numbers[1][1] - numbers[1][0]) < 10?'0':'';
+output.value += '\t+' + mzeros + (numbers[0][1] - numbers[0][0]) + ':' + szeros + (numbers[1][1] - numbers[1][0]) + ':' + (numbers[2][1] - numbers[2][0]) + '\n';
+}
+splitdate = clock.value;
+output.value += (++splitcounter) + '. ' + clock.value + '\n';
+}
+}
+</script>
+<style type="text/css">
+*
+{
+margin: 0;
+padding: 0;
+}
+input, textarea
+{
+width: 100%;
+font: normal 12px verdana;
+height: 25px;
+}
+</style>
+  </head>
+  <body>
+     <div class = "blackbox">
+     <header>
+       <h2>Asteroids of Galaxy SiO-2109</h2>
+     </header>
+     <nav>
+       <ul>
+         <li>Click here to get the source code
+           <ul>
+             <li>
+               <button 
+                 onClick="window.open('https://github.com/jeffgagnon01');">
+                 Jean-François Gagnon's Github 
+               </button>
+             </li>
+           </ul>
+         </li>
+       </ul>
+     </nav>
+     <p/>
+     <h3>Adapted by Jean-François Gagnon</h3>
+     <h3>Based on the game Invaders by Timur Ridjanovic</h3>
+   <audio src="audio/heavy_deep_space.ogg" controls> 
+      <embed src="audio/heavy_deep_space.ogg"
+      width="180"
+      height="90"
+      loop="false"
+      autostart="false" />
+   </audio>
+    <section>
+      <canvas id = "canvas" width = "950" height = "560">
+        <img id ="spaceship" src="css/img/spaceship.png"></img>
+        <img id ="star" src="css/img/star.png"></img>
+      	<img id ="asteroid" src="css/img/asteroid.png"></img>
+      	<img id ="explosion" src="css/img/explosion.gif"></img>
+      </canvas>
+      <script type="application/dart" src="asteroidsofgalaxysio2109.dart"></script>
+      <script src="packages/browser/dart.js"></script>
+    </section>
+      Contact me: 
+      <address>
+      <a href="mailto:jean-francois.gagnon.28@ulaval.ca">Jean-François Gagnon</a>
+      </address>
+     <h4></h4>
+     <h4>Looking for more challenge? Use the stopwatch below to record your best time!  </h4>
+  <input id="clock" value="00:00:0" style="text-align: center;" readonly type="text">
+  <br>
+  <input id="startstopbutton" value="Start" onClick="startstop();" type="button">
+  <br>
+  <input id="splitbutton" value="Split time" onClick="splittime();" type="button">
+  <br>
+  <input id="resetbutton" value="Reset" onClick="resetclock();" type="button">
+  <br>
+  <textarea id="output" style="height: 90%;"></textarea>
+    </div>
+  </body>
+</html>
+  

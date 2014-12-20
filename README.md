@@ -1,5 +1,8 @@
-##Invaders
+﻿##Asteroids of Galaxy SiO-2109
 
-by Timur Ridjanovic
+Adapted by Jean-François Gagnon. Based on a game by Timur Ridjanovic. 
 
-A game in Dart. The goal is to survive.
+The goal is to shoot as many asteroids as possible.
+
+In order to review what has been adapted, have a look at LOG.txt.    
+

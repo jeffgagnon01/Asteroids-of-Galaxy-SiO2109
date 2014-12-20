@@ -3,12 +3,11 @@
 /* ===[ begin ]=== */
 
 /*
-  Title:                  Menu Design Style
-  Author:                 Timur Ridjanovic
-  Influenced By: 
-    http://www.devinrolsen.com/pure-css-horizontal-menu/
-  Created:                2011-12-22
-  Updated:                2011-12-23
+  Title:                  Asteroids of Galaxy SiO-2109
+  Author:                 Jean-François Gagnon
+  Inspired By: 			  A game from Timur Radjanovitch
+  Created:                2014-11-22
+  Updated:                2014-12-17
 */
 
 /* ===[ horizontal menu bar with menus and menu items ]=== */
@@ -17,10 +16,10 @@
     width: 1000px;
     height: 50px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #99FF00;
     /*background-color: #663117;*/
     background-color: #000000;
-    border-top: 2px solid #C0C0C0;
+    border-top: 2px solid #99FF00;
   }
 
   nav ul {
@@ -39,11 +38,11 @@
   }
 
   nav ul li:hover {
-    color: #d9ece2;
+    color: #FFFF00;
    
   }
 
-  nav li ul {
+  nav li ul { 
     margin: 0px;
     padding-top: 8px;
     display: none;
@@ -54,8 +53,8 @@
     /*color: #d9ece2;*/
     color: #000000;
     /*background-color: #663117;*/
-    background-color: #FFFFFF;
-  }
+    background-color: #FFFFFF;   
+  } 
 
   nav li:hover ul {
     display: block;
@@ -64,7 +63,7 @@
 
   nav li li {
     padding: 0px;
-    color: #ffffff;
+    color: #CCFF00;
     list-style: none;
     display: list-item;
   }
@@ -87,18 +86,18 @@
     text-decoration: none;
     /*color: #663117;*/
     color: #000000;
-    background: #d9ece2;
+    background: #CCFF00;
   }
 
   nav li li button {
     color: #000000;
     font-size: 14px;
     font-weight: bold;
-    background-color: #ffffff;
+    background-color: #99FF00;
   }
 
   nav li li button:hover {
-    background-color: #d9ece2;
+    background-color: #FFFF00;
   }
 
 /* ===[ end ]=== */

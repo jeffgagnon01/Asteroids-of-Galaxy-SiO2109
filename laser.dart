@@ -1,4 +1,4 @@
-part of invaders;
+part of asteroidsofgalaxysio2109;
 
 class Laser {
   Board board;
@@ -7,40 +7,45 @@ class Laser {
   int width;
   int height;
   bool hit = true;
-  Creature creature1;
-  Creature creature2;
-  Creature creature3;
+  Asteroid asteroid1;
+  Asteroid asteroid2;
+  Asteroid asteroid3;
 
   Laser(this.board, this.x, this.y, this.width, this.height,
-        this.creature1, this.creature2, this.creature3) {
-    document.onMouseDown.listen((MouseEvent e) {
+        this.asteroid1, this.asteroid2, this.asteroid3) {
+    document.onClick.listen((MouseEvent e) {
       x = e.offset.x;
       y = e.offset.y - 80;
     });
+    
+/*    document.keypress.listen((MouseEvent e) {
+      if (e.keyCode == 0 || e.keyCode == 32)});    */
+      
+    
     // Redraw every 8 ms.
-    new Timer.periodic(const Duration(milliseconds: 8), (t) => draw());
+    new Timer.periodic(const Duration(milliseconds: 1), (t) => draw());
   }
 
   draw() {
     y--;
     board.context.beginPath();
-    board.context.fillStyle = 'green';
+    board.context.fillStyle = 'yellow';
     board.context.fillRect(x, y, width, height);
     board.context.closePath();
     board.context.stroke();
-    if (x > creature1.x && x < creature1.x + creature1.width &&
-        y > creature1.y && y < creature1.y + creature1.height) {
-      creature1.visible = false;
+    if (x > asteroid1.x && x < asteroid1.x + asteroid1.width &&
+        y > asteroid1.y && y < asteroid1.y + asteroid1.height) {
+      asteroid1.visible = false;
+    }  // permet de détruire plusieurs des 3 astéroides créés aléatoirement
+    if (x > asteroid2.x && x < asteroid2.x + asteroid2.width &&
+        y > asteroid2.y && y < asteroid2.y + asteroid2.height) {
+      asteroid2.visible = false;
     }
-    if (x > creature2.x && x < creature2.x + creature2.width &&
-        y > creature2.y && y < creature2.y + creature2.height) {
-      creature2.visible = false;
-    }
-    if (x > creature3.x && x < creature3.x + creature3.width &&
-        y > creature3.y && y < creature3.y + creature3.height) {
-      creature3.visible = false;
-    }
-  }
+    if (x > asteroid3.x && x < asteroid3.x + asteroid3.width &&
+        y > asteroid3.y && y < asteroid3.y + asteroid3.height) {
+      asteroid3.visible = false;
+    }  
+  } 
 }
 
 

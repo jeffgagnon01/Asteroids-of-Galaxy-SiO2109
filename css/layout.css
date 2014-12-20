@@ -4,15 +4,15 @@
 
 /*
   Title:                   Basic Layout Design Style
-  Author:                  Timur Ridjanovic
-  Influenced By:           http://www.simplebits.com/
+  Author:                  Jean-François Gagnon
+  Influenced By:           Timur Ridjanovic
   Created:                 2006-09-03
-  Updated:                 2011-12-22
+  Updated:                 2014-12-17
 */
 
   .whitebox {
     color: #000000;
-    background: #FFFFFF;
+    background: #FF3399;
     /*padding: 4px;*/
     padding-top: 10px;
     padding-bottom: 20px;
@@ -20,17 +20,16 @@
     border-bottom-right-radius: 50px 50px;
     border-top-right-radius: 50px 50px;
     border-bottom-left-radius: 50px 50px;
-    text-align: center;
+    text-align: left;
 
   }
-
-    	
-  footer {
+	
+  footer { 
     font-family: arial, sans-serif;
     font-size: 14px;
     font-weight: bold;
     /*color: #ffffff;*/
-    color: #000000;
+    color: #FF3399;
     background: #663117;
     padding: 50px;
     border-top: 2px solid #999999;
